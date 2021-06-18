@@ -13,9 +13,10 @@ import (
 )
 
 const (
-	Migration = `CREATE TABLE IF NOT EXISTS Entrega (
+	Migration = `CREATE TABLE IF NOT EXISTS Evento (
 		IdEvento serial PRIMARY KEY,
 		Ip text,
+		Estado text,
 		Valor int,
 		CreatedAt timestamp with time zone DEFAULT current_timestamp,
 		UpdatedAt timestamp)`

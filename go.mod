@@ -1,4 +1,4 @@
-module example.com/rabbitMqExample
+module github.com/Odair/rabbitMqExample
 
 go 1.16
 

@@ -35,10 +35,6 @@ func (s *Service) GetAll() ([]*Evento, error) {
 	for rows.Next() {
 		var e Evento
 
-		err := rows.Scan(&e.IdEvento, &e.Ip, &e.Estado, &e.Valor)
-		if err != nil {
-			return nil, err
-		}
 		result = append(result, &e)
 	}
 
@@ -49,7 +45,7 @@ func (s *Service) Get(ID int64) (*Evento, error) {
 
 	var e Evento
 
-	stmt, err := s.DB.Prepare("select IdEvento, Ip, Estado, Valor from beer where IdEvento = ?")
+	stmt, err := s.DB.Prepare("select IdEvento, Ip, Estado, Valor from Evento where IdEvento = ?")
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +55,6 @@ func (s *Service) Get(ID int64) (*Evento, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return &e, nil
 
 }
@@ -71,7 +66,7 @@ func (s *Service) Store(e *Evento) error {
 		return err
 	}
 
-	stmt, err := tx.Prepare("insert into beer(Ip, Estado, Valor) values (?,?,?)")
+	stmt, err := tx.Prepare("insert into Evento(Ip, Estado, Valor) values (?,?,?)")
 	if err != nil {
 		return err
 	}
